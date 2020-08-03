@@ -23,3 +23,28 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+Cypress.Commands.add('assertItems', (expected_items) => {
+  var expected_items_length = expected_items.length
+  
+  if (expected_items_length)
+  {
+    cy.get('#product-list article').then((actual_items) => {
+      expect(actual_items, `${expected_items_length} items`).to.have.length(expected_items_length)
+
+      for (var i = 0; i < expected_items_length; i++) {
+        expect(actual_items.eq(i), `item #${i}`).to.contain(expected_items[i])
+      }
+    })
+  }
+  else{
+    cy.get('#product-list article').should('not.exist')
+  }
+})
+
+
+Cypress.Commands.add('filterBy', (filter_text) => {
+    cy.get('.product-filter label').within(() => {
+      cy.contains(filter_text).click()
+    })
+})
+
