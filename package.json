@@ -4,7 +4,10 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "start": "npm run serve",
+    "cy:run": "cypress run",
+    "test": "start-server-and-test start http://localhost:8080 cy:run"
   },
   "lint-staged": {
     "*.{js,vue}": [
@@ -35,8 +38,10 @@
     "@vue/cli-plugin-babel": "^3.8.0",
     "@vue/cli-plugin-eslint": "^3.12.1",
     "@vue/cli-service": "^4.4.1",
+    "cypress": "^4.11.0",
     "deepmerge": "^4.2.2",
     "lint-staged": "^10.2.7",
+    "start-server-and-test": "^1.11.2",
     "vue-template-compiler": "^2.6.11"
   },
   "babel": {
